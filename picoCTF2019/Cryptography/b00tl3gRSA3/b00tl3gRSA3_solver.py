@@ -9,6 +9,7 @@ n: 82178071834559880108605192293384033145311506698642025419065205582613614336876
 e: 65537
 
 # then factorized n by sympy.factorint
+# factorizing takes several minutes...
 
 $ pip install sympy
 $ python
