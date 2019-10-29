@@ -32,7 +32,7 @@ def main():
     cipher = AES.new((key2 + chr(0x00) * (16 - (len(key2) % 16))).encode(), AES.MODE_ECB)
     dec_2 = cipher.decrypt(dec_1)
     dec_2_notpadded = dec_2[:-5]
-    dec_3 = decrypt_2(key1, dec_2_notpadded.decode())
+    dec_3 = decrypt(key1, dec_2_notpadded.decode())
     print(dec_3)
     input("[END OF PROGRAM]")
 
