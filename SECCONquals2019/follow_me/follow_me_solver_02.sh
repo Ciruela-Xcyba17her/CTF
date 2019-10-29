@@ -1,0 +1,1 @@
+curl -q -H 'Content-Type:application/json' -d "{\"input\": \"000,000,000,000,000,0000,000,mm-mM-002,002,002,mm-008,003,000,003,000,-+-M+001,001,001,mm*\"}" http://follow-me.chal.seccon.jp/submit/quals/0
