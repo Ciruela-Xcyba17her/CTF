@@ -1,0 +1,2 @@
+GIF  
+<?php var_dump(scandir('.')); ?>
