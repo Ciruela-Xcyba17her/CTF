@@ -1,7 +1,7 @@
 <?php
 
 // the last case is not effective on my environment...
-$uris = array(
+$urls = array(
     '/index.php?page=flag',
     '///level25/index.php?page=flag',
     '////////level25/index.php?page=flag',
