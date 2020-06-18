@@ -52,4 +52,71 @@ invoke-static {v8, v9}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/Strin
 const-string v8, "log-tag"
 
 invoke-static {v8, v9}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
-``型
+```
+
+### 実行コードの追加（関数）
+EX1. Javaと対応するSmaliコード・その1
+```Java
+// Java
+Log.d("log-tag", Arrays.toString(arrayOfByte));
+```
+
+```Smali
+# smali
+const-string v6, "log-tag"
+invoke-static {v0}, Ljava/util/Arrays;->toString([Ljava/lang/Object;)Ljava/lang/String;
+move-result-object v7
+invoke-static {v6, v7}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
+```
+
+EX2. Javaと対応するSmaliコード・その2
+```Java
+// Java
+private final SecretKey secretKey = new SecretKeySpec("IncrediblySecure".getBytes(), 0, 16, "AES");
+```  
+
+```Smali
+### smali
+new-instance v0, Ljavax/crypto/spec/SecretKeySpec;
+
+const-string v1, "IncrediblySecure"
+
+invoke-virtual {v1}, Ljava/lang/String;->getBytes()[B
+
+move-result-object v1
+
+const/4 v2, 0x0
+
+const/16 v3, 0x10
+
+const-string v4, "AES"
+
+# v1(="IncrediblySecure")は[B型(byte[]型)
+# v2(=0x0)はI型(int型)
+# v3(=0x10)はI型(int型)
+# v4(="AES")はLjava/lang/String;型(java.lang.Stringオブジェクト)
+# 返り値はV型(void)
+invoke-direct {v0, v1, v2, v3, v4}, Ljavax/crypto/spec/SecretKeySpec;-><init>([BIILjava/lang/String;)V
+
+iput-object v0, p0, Les/o0i/challengeapp/nativemodule/ValidateFlagModule;->secretKey:Ljavax/crypto/SecretKey;
+```
+
+### Smali基本文法
+[今日も朝から昼寝: smaliの文法まとめ](https://stpr18.blogspot.com/2015/11/smali.html)を参照するべし。
+#### 型
+| Javaでの型 | Smaliでの型 |
+| ----------- | --------- |
+| void | V |
+| boolean | Z |
+| byte | B |
+| short | S |
+| char | C |
+| int | I |
+| long | L |
+| float | F |
+| double | D |
+#### クラス型
+| Javaでの型 | Smaliでの型 |
+| ----------- | --------- |
+| java.lang.String | Ljava/lang/String; |
+|  |  |
